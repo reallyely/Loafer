@@ -4,14 +4,15 @@ export const react = LazyModule => Component => {
   return class LazyContainer extends React.Component {
     constructor(props) {
       super(props);
+
       const lazyModule = new LazyModule();
       this.state = lazyModule.store;
       this.actions = lazyModule.actions;
+      this.updateStore = this.updateStore.bind(this)
     }
 
-    updateStore(action, values) {
-      console.log("updateStore", action, values);
-      this.setState(prevState => action(values)(prevState));
+    updateStore(action) {
+      return (...values) => this.setState(prevState => action(...values)(prevState));
     }
 
     render() {
@@ -19,8 +20,7 @@ export const react = LazyModule => Component => {
         lazyModule: {
           store: this.state,
           actions: this.actions,
-          updateStore: action => (...values) =>
-            this.updateStore(action, ...values)
+          updateStore: this.updateStore
         }
       });
     }
