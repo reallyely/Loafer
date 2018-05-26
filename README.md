@@ -1,2 +1,0 @@
-# Loafer
-Created with CodeSandbox

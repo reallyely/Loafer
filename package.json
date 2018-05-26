@@ -1,0 +1,23 @@
+{
+  "name": "lazymodule-poc",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "hyperapp": "1.2.5",
+    "node-sass": "latest",
+    "postcss-modules": "1.1.0",
+    "ramda": "0.25.0",
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

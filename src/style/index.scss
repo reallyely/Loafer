@@ -1,0 +1,7 @@
+@import "colors";
+@import "fonts";
+
+.body {
+  font-family: $fontBody, sans-serif;
+  background-color: $bg;
+}

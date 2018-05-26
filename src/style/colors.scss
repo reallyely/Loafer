@@ -1,0 +1,30 @@
+@mixin inkHatch($angle: 135deg, $stop: 45%) {
+  background: repeating-linear-gradient(
+      $angle,
+      transparent,
+      transparent 1px,
+      $bg 1px,
+      $bg 6px
+    ),
+    linear-gradient(
+      $angle,
+      transparent $stop,
+      transparentize($color: $ink, $amount: 0.5) 55%
+    );
+}
+// $bg: #23272a;
+// $bgLight: #3e4a53;
+$chromeBg: #947755;
+// $gray: #D7DAE5;
+$bg: #c1a172;
+$bgLight: #d9c69c;
+$ink: #2a1502;
+$red: #f48181;
+$gold: #e9a75c;
+$yellow: #f4e04d;
+$green: #8dc954;
+$blue: #a3a2c1;
+
+$teal: #80ded9;
+$violet: #66366b;
+$white: #ece6c6;

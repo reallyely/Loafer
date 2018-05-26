@@ -1,0 +1,106 @@
+@import "./colors";
+@import "./fonts";
+
+.searchTags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .addedTags {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    .addedTag {
+      font-family: $fontHeader2;
+      background-color: $blue;
+      color: $ink;
+      border: thick solid $ink;
+      padding: 0.15rem;
+      margin-right: 0.15rem;
+      border-radius: 0.15rem;
+      cursor: pointer;
+    }
+  }
+
+  .inputGroup {
+    flex-direction: column;
+    flex: 1;
+
+    input {
+      flex: 1;
+      font-family: $fontInput, cursive;
+      font-size: 1.5rem;
+      background-color: transparent;
+      border: transparent;
+      border-bottom: thick groove $ink;
+      width: 100%;
+      color: $ink;
+      outline: none;
+
+      &::placeholder {
+        color: rgba($ink, 0.5);
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.suggestedContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0.15rem;
+  max-height: 50rem;
+  min-width: 15rem;
+  border: 1px solid $ink;
+  border-collapse: collapse;
+  border-radius: 0.15rem;
+  position: absolute;
+  background-color: $bg;
+
+  .suggestedTag {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.1rem;
+    text-transform: lowercase;
+
+    &:hover {
+      background-color: lighten($chromeBg, 5%);
+    }
+
+    .header {
+      font-family: $fontHeader2;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .body {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .class {
+      font-size: 0.75rem;
+      color: $ink;
+    }
+    .id {
+      color: lighten($ink, 10%);
+      padding-bottom: 0.15rem;
+      text-shadow: 0px 0px 15px $bg;
+    }
+    .definition {
+      font-size: 0.75rem;
+      color: darken($ink, 10%);
+      background-color: $bg;
+    }
+  }
+}
+.selected {
+  // background-color: lighten($chromeBg, 10%);
+  // border-bottom: thick dashed $ink;
+
+  @include inkHatch;
+  border: $ink 2px solid;
+  border-radius: 0.15rem;
+}
