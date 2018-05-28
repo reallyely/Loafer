@@ -84,7 +84,8 @@ export class TagSearch {
     };
 
     this.asyncActions = {
-      getAllTags: value => (state, actions) => Promise.resolve(TAGS)
+      getAllTags: (number = 3) => (state, actions, asyncActions) => Promise.resolve(R.slice(0, number, TAGS)),
+      wait: value => () => new Promise((resolve, reject) => setTimeout(() => resolve(value), 1000))
     }
   }
 }

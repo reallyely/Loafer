@@ -19,8 +19,8 @@ export const react = LazyModule => Component => {
       );
     }
 
-    execAsync(asyncAction, ...values) {
-      return asyncAction(values)(this.state, this.actions, this.asyncActions)
+    execAsync(asyncAction) {
+      return (...values) => asyncAction(...values)(this.state, this.actions, this.asyncActions)
     }
 
     render() {

@@ -81,42 +81,48 @@ const SuggestedTag = ({ clickTag, tag, selected }) => (
       {/* <div className={style.suggestedContainer__class}>{tag.class}</div> */}
     </div>
     <div className={style.suggestedContainer__body}>
-      <div className={style.suggestedContainer__definition}>{tag.definition}</div>
+      <div className={style.suggestedContainer__definition}>
+        {tag.definition}
+      </div>
     </div>
   </div>
 );
 
 export const TagSearch = (props) => {
-  return (
-    <div className={style.searchTags}>
-      <div className={style.searchTags__addedTags}>
-        {props.addedTags.map(tag => (
-          <AddedTag
-            key={tag.id}
-            tag={tag}
-            clickTag={R.compose(props.clickDeleteTag)}
-          />
-        ))}
-      </div>
+  if (props.allTags.length > 0) {
+    return (
+      <div className={style.searchTags}>
+        <div className={style.searchTags__addedTags}>
+          {props.addedTags.map(tag => (
+            <AddedTag
+              key={tag.id}
+              tag={tag}
+              clickTag={props.clickDeleteTag}
+            />
+          ))}
+        </div>
 
-      <div className={style.searchTags__inputGroup}>
-        <input
-          value={props.value}
-          onInput={R.compose(
-            props.calcPossibleTags,
-            pluckEventVal
-          )}
-          onKeyDown={keyBindings(props)}
-          placeholder="I want ..."
-        />
-        {R.isEmpty(props.possibleTags) ? null : (
-          <SuggestedTags
-            tags={props.possibleTags}
-            selected={props.selectedPossibleTag}
-            clickTag={R.compose(props.addTag, pluckEventVal)}
+        <div className={style.searchTags__inputGroup}>
+          <input
+            value={props.value}
+            onInput={R.compose(
+              props.calcPossibleTags,
+              pluckEventVal
+            )}
+            onKeyDown={keyBindings(props)}
+            placeholder="I want ..."
           />
-        )}
+          {R.isEmpty(props.possibleTags)
+            ? null
+            : <SuggestedTags
+                tags={props.possibleTags}
+                selected={props.selectedPossibleTag}
+                clickTag={props.addTag}
+              />
+          }
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  return <div><button onClick={() => props.getAllTags(1)}>Get Tags</button></div>
 }
