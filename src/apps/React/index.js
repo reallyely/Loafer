@@ -39,6 +39,7 @@ class ReactAppImplementation extends React.Component {
 
       getAllTags = {number =>
         execAsync(asyncActions.getAllTags)(number)
+          .then(execAsync(asyncActions.wait))
           .then(updateStore(actions.setAllTags))
       }
     />
