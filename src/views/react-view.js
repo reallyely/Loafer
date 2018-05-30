@@ -51,7 +51,7 @@ const AddedTag = ({ clickTag, tag }) => (
   <div
     className={style.searchTags__addedTag}
     onMouseDown={e => e.preventDefault()}
-    onClick={clickTag.bind(null, tag.id)}
+    onClick={clickTag}
   >
     {tag.title ? tag.title : "no title"}
   </div>
@@ -61,7 +61,7 @@ const SuggestedTags = ({ clickTag, selected, tags }) => (
   <div className={style.suggestedContainer}>
     {tags.map((tag, i) => (
       <SuggestedTag
-        clickTag={clickTag}
+        clickTag={clickTag.bind(null, i)}
         key={tag.id}
         tag={tag}
         selected={selected === i}

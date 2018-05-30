@@ -25,7 +25,7 @@ export class TagSearch {
 
     this.actions = {
       setAllTags: allTags => () => ({ allTags }),
-      addTag: () => store =>
+      addTag: index => store =>
         store.possibleTags.length > 0
           ? ({
               value: "",
@@ -33,7 +33,7 @@ export class TagSearch {
               selectedPossibleTag: 0,
               addedTags: [].concat(
                 store.addedTags,
-                store.possibleTags[store.selectedPossibleTag]
+                store.possibleTags[(index || store.selectedPossibleTag)]
               )
             })
           : ({}),

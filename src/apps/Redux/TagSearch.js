@@ -21,7 +21,7 @@ export default function reducer(state = tagSearch.store, action = {}) {
     case SET_ALL_TAGS:
       return Object.assign({}, state, tagSearch.actions.setAllTags(action.allTags)(state) )
     case ADD_TAG:
-      return Object.assign({}, state, tagSearch.actions.addTag()(state) )
+      return Object.assign({}, state, tagSearch.actions.addTag(action.index)(state) )
     case BACKSPACE_TAG:
       return Object.assign({}, state, tagSearch.actions.backspaceTag(action.value)(state) )
     case CALC_POSSIBLE_TAGS:
@@ -50,8 +50,8 @@ export default function reducer(state = tagSearch.store, action = {}) {
 
 // })
 export const setAllTags = allTags => ({ type: SET_ALL_TAGS, allTags })
-export const addTag = () => ({ type: ADD_TAG })
-export const backspaceTag = value => ({type: BACKSPACE_TAG, value })
+export const addTag = index => ({ type: ADD_TAG, index})
+export const backspaceTag = value => ({ type: BACKSPACE_TAG, value })
 export const calcPossibleTags = value => ({ type: CALC_POSSIBLE_TAGS, value })
 export const clearPossibleTags = () => ({ type: CLEAR_POSSIBLE_TAGS })
 export const clickDeleteTag = id => ({ type: CLICK_DELETE_TAG, id })
