@@ -41,19 +41,27 @@ export default function reducer(state = tagSearch.store, action = {}) {
 
 // Action Creators
 // any -> { type: String, ...}
+// Action creators look a lot like Loafer actions with a few exceptions
+//  * Action Creators must return a type
+//  * Action Creators are :: any -> Action
+//  * Loafer Actions are :: any -> (state, actions, asyncActions) -> PartialState
+// const mapToActionCreator = action => type => (...values) => ({
+//   type,
+
+// })
 export const setAllTags = allTags => ({ type: SET_ALL_TAGS, allTags })
 export const addTag = () => ({ type: ADD_TAG })
 export const backspaceTag = value => ({type: BACKSPACE_TAG, value })
 export const calcPossibleTags = value => ({ type: CALC_POSSIBLE_TAGS, value })
 export const clearPossibleTags = () => ({ type: CLEAR_POSSIBLE_TAGS })
 export const clickDeleteTag = id => ({ type: CLICK_DELETE_TAG, id })
-export const selectNextSuggestedTag = () => ({ tye: SELECT_NEXT_SUGGESTED_TAG })
-export const selectPreviousSuggestedTag = () => ({ tye: SELECT_PREVIOUS_SUGGESTED_TAG })
+export const selectNextSuggestedTag = () => ({ type: SELECT_NEXT_SUGGESTED_TAG })
+export const selectPreviousSuggestedTag = () => ({ type: SELECT_PREVIOUS_SUGGESTED_TAG })
 
 // side effects, only as applicable
 // e.g. thunks, epics, etc
 // export function getWidget () {
 //   return dispatch => get('/widget').then(widget => dispatch(updateWidget(widget)))
 export const getAllTags = number => dispatch =>
-  tagSearch.asyncActions.getAllTags(3)()
-    .then(allTags => dispatch(setAllTags(allTags)))
+  tagSearch.asyncActions.getAllTags()()
+    .then(allTags => setTimeout( () => dispatch(setAllTags(allTags)), 1000))
