@@ -124,5 +124,5 @@ export const TagSearch = (props) => {
       </div>
     );
   }
-  return <div><button onClick={() => props.getAllTags(1)}>Get Tags</button></div>
+  return <div><button onClick={() => props.getAllTags(3)}>Get Tags</button></div>
 }
