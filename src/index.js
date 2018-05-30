@@ -17,7 +17,11 @@ render(
   document.getElementById("react-app")
 );
 
-const store = createStore(tagSearchReducer, applyMiddleware(thunk))
+const store = createStore(
+  tagSearchReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk)
+)
 render(
   <Provider store={store}>
     <div>
