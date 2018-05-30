@@ -1,6 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 import { connect } from 'react-redux'
+import { compose } from 'ramda'
+
 import {
   addTag,
   backspaceTag,
@@ -26,22 +28,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTag: (...all) =>
-      dispatch(addTag(all)),
-    backspaceTag: (...all) =>
-      dispatch(backspaceTag(all)),
-    calcPossibleTags: (...all) =>
-      dispatch(calcPossibleTags(all)),
-    clearPossibleTags: (...all) =>
-      dispatch(clearPossibleTags(all)),
-    clickDeleteTag: (...all) =>
-      dispatch(clickDeleteTag(all)),
-    selectNextSuggestedTag: (...all) =>
-      dispatch(selectNextSuggestedTag(all)),
-    selectPreviousSuggestedTag: (...all) =>
-      dispatch(selectPreviousSuggestedTag(all)),
-    getAllTags: (...all) =>
-      dispatch(getAllTags(all))
+    addTag: compose(dispatch, addTag),
+    backspaceTag: compose(dispatch, backspaceTag),
+    calcPossibleTags: compose(dispatch, calcPossibleTags),
+    clearPossibleTags: compose(dispatch, clearPossibleTags),
+    clickDeleteTag: compose(dispatch, clickDeleteTag),
+    selectNextSuggestedTag: compose(dispatch, selectNextSuggestedTag),
+    selectPreviousSuggestedTag: compose(dispatch, selectPreviousSuggestedTag),
+    getAllTags: compose(dispatch, getAllTags)
   }
 }
 
