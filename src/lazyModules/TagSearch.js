@@ -15,21 +15,16 @@ const getPossibilitiesFromTAGS = (value, addedTags, allTags) =>
 // LAZY MODULE
 export class TagSearch {
   constructor(initialProps) {
-    this.store = R.merge({
-        allTags: [],
-        addedTags: [],
-        possibleTags: [],
-        selectedPossibleTag: 0,
-        value: "",
-      },
-      initialProps
-    ); // a developer could add arbitrary props with this setup. Care?
+    this.store = {
+      allTags: [],
+      addedTags: [],
+      possibleTags: [],
+      selectedPossibleTag: 0,
+      value: ""
+    };
 
     this.actions = {
-      setAllTags: allTags => () => {
-        console.log('settingAllTags', allTags);
-        return ({ allTags })
-      },
+      setAllTags: allTags => () => ({ allTags }),
       addTag: () => store =>
         store.possibleTags.length > 0
           ? ({
@@ -83,6 +78,7 @@ export class TagSearch {
       })
     };
 
+    // Is this necessary? Should async actions just be under actions they just return a promise?
     this.asyncActions = {
       getAllTags: (number = 3) => (state, actions, asyncActions) => Promise.resolve(R.slice(0, number, TAGS)),
       wait: value => () => new Promise((resolve, reject) => setTimeout(() => resolve(value), 1000))
